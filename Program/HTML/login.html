@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link href="../CSS/login.css" rel="stylesheet">
+</head>
+<body>
+    <div id="loginBox">
+        <span style="text-align: center; font-size: 45px; font-weight: lighter">Login</span>
+        <h3 style="font-weight: lighter">(아이디와 비밀번호는 행정실에서 발급됩니다.)</h3>
+        <form method="post" action="http://localhost:8080/login/process" id="loginForm">
+            <br>
+            <label>
+                <span style="font-size: 35px; font-weight: lighter;">ID</span>
+                <br>
+                <input type="text" required placeholder="교직원 아이디를 입력해주세요.">
+            </label>
+            <p style="font-size: 50px;"></p>
+            <label>
+                <span style="font-size: 35px; font-weight: lighter;">Password</span>
+                <br>
+                <input type="password" required placeholder="교직원 비밀번호를 입력해주세요.">
+            </label>
+            <button type="submit" id="loginButton">LOGIN</button>
+            <h3 style="font-weight: lighter; margin-top: 40px;">(기타 문의사항은 행정실로 연락해주세요.)</h3>
+        </form>
+    </div>
+</body>
+</html>
