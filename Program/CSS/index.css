@@ -9,28 +9,28 @@
 {
    border: 1px solid #aaaaaa;
    width: 1000px;
-   height: 800px;
+   height: 810px;
    margin: 50px auto; 
    border-radius: 40px;
 }
 
 #innerBox1
 {
-    margin: 50px 50px;
+    margin: 20px 50px;
 }
 
 #innerBox2
 {
     border: 1px solid #555555;
     width: 950px;
-    height: 570px;
+    height: 600px;
     margin: 30px auto;
     border-radius: 30px;
 }
 
-#innerBox2 div:not(#schoolActivity)
+#innerBox2 div:not(#programImprovement)
 {
-    height: 113px;
+    height: 99px;
     border-bottom: 1px solid #aaaaaa;
 }
 
@@ -44,11 +44,6 @@
     text-decoration: none;
 }
 
-#innerBox2 div:hover
-{
-    text-shadow: 0 0 5px #aaaaaa;
-}
-
 #logoutButton
 {
     font-weight: lighter;
@@ -59,11 +54,88 @@
     font-size: 25px;
     border-radius: 35px;
     letter-spacing: 10px;
-    margin-left: 210px;
+    margin-left: 40px;
 }
 
-#logoutButton:hover
+#logoutButton:hover, #passwordChangeButton:hover
 {
     box-shadow: 0 0 10px black;
+}
+
+#passwordChangeButton
+{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-left: 270px;
+    font-size: 25px;
+    background-color: black;
+}
+
+#passwordChangeButton a
+{
+    text-decoration: none;
+    color:white;
+}
+
+#animalProtect a::first-letter
+{
+    color:blueviolet;
+}
+
+#animalProtect:hover
+{
+    text-shadow: 0px 0px 5px blueviolet;
+}
+
+#animalInformation a::first-letter
+{
+    color:gold;
+}
+
+#animalInformation:hover
+{
+    text-shadow: 0px 0px 5px gold;
+}
+
+#animalStatistics a::first-letter
+{
+    color:aquamarine;
+}
+
+#animalStatistics:hover
+{
+    text-shadow: 0px 0px 5px aquamarine;
+}
+
+#animalHospital a::first-letter
+{
+    color:crimson;
+}
+
+#animalHospital:hover
+{
+    text-shadow: 0px 0px 5px crimson;
+}
+
+#shelterSuggestion a::first-letter
+{
+    color: orangered;
+}
+
+#shelterSuggestion:hover
+{
+    text-shadow: 0px 0px 5px orangered;
+}
+
+
+#programImprovement a::first-letter
+{
+    color:greenyellow;
+}
+
+#programImprovement:hover
+{
+    text-shadow: 0px 0px 5px greenyellow;
 }
 
