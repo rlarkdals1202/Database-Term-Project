@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+*
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+#box
+{
+   border: 1px solid #aaaaaa;
+   width: 1020px;
+   height: 810px;
+   margin: 50px auto; 
+   border-radius: 40px;
+}
+
+#innerBox1
+{
+    margin: 20px 50px;
+}
+
+#innerBox2
+{
+    width: 970px;
+    height: 600px;
+    margin: 30px auto;
+    overflow: scroll;
+}
+
+#innerBox2 table
+{
+    width: 950px;
+    height: 600px;
+    text-align: center;
+    padding: 10px;
+}
+
+table td:nth-child(1)
+{
+    width: 50px;
+}
+
+table td:nth-child(2), td:nth-child(3)
+{
+    width: 200px;
+}
+
+tr, td, th
+{
+    border:1px solid #aaaaaa;
+}
+
+
+table, tr, th, td
+{
+    border-collapse: collapse;
+}
+
+#informationRow 
+{
+    background-color:black;
+    color:white;
+}
+
+table tr:nth-child(even)
+{
+    background-color: #eeeeee;
+}
+
+td
+{
+    font-weight: lighter;
+}
+
+#writingButton
+{
+    font-weight: lighter;
+    background-color: black;
+    color: white;
+    border: 1px black solid;
+    padding: 15px 25px;
+    font-size: 25px;
+    border-radius: 35px;
+    letter-spacing: 10px;
+    margin-left: 217px;
+}
+
+#writingButton:hover
+{
+    box-shadow: 0 0 10px black;
+}

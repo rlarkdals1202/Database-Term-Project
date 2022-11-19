@@ -21,7 +21,7 @@
 
 #innerBox2
 {
-    border: 1px solid #555555;
+    border: 1px solid #aaaaaa;
     width: 950px;
     height: 600px;
     margin: 30px auto;
@@ -72,9 +72,8 @@
     background-color: black;
 }
 
-#passwordChangeButton a
+#passwordChangeButton
 {
-    text-decoration: none;
     color:white;
 }
 
