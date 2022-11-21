@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보호 동물 업데이트</title>
+    <link rel="stylesheet" href="../CSS/animalCareUpdate.css">
+</head>
+<body>
+    <form method="post" action="http://localhost:8080/animal/care/update/process">
+        <div id="box">
+            <div id="innerBox1">
+                <span style="font-size: 45px; font-weight:lighter; text-shadow: 0 0 5px blueviolet;">Animal Care</span>
+                <button type="submit" id="animalUpdateButton">UPDATE</button>
+            </div>
+            <hr style="width: 95%;">
+            <div id="innerBox2">
+                <label>
+                    <span>Animal Type</span>
+                    <br><br>
+                    <input type="text" required placeholder="동물 종류를 입력해주세요." id="animalType" name="animalType">
+                </label>
+                <br><br>
+                <label>
+                    <span>Animal Sort</span>
+                    <br><br>
+                    <input type="text" required placeholder="동물 품종을 입력해주세요." id="animalSort" name="animalSort">
+                </label>
+                <br><br>
+                <label>
+                    <span>Animal Name</span>
+                    <br><br>
+                    <input type="text" required placeholder="동물 이름을 입력해주세요." id="animalName" name="animalName">
+                </label>
+                <br><br>
+                <label>
+                    <span>Animal Memo</span>
+                    <br><br>
+                    <textarea name="animalMemo" id="animalMemo" required placeholder="동물 정보를 입력해주세요.(메모)"></textarea>
+                </label>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
