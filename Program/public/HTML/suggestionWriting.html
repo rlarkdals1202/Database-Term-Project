@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건의사항 작성</title>
+    <link rel="stylesheet" href="../CSS/suggestionWriting.css">
+</head>
+<body>
+    <form method="post" action="http://localhost:8080/improvement/writing/submit">
+        <div id="box">
+            <div id="innerBox1">
+                <span style="font-size: 45px; font-weight:lighter; text-shadow: 0 0 5px orangered;">Suggestion Writing</span>
+                <button type="submit" id="submitButton">SUBMIT</button>
+            </div>
+            <hr style="width: 95%;">
+            <div id="innerBox2">
+                <label>
+                    <span>Title</span>
+                    <br><br>
+                    <input type="text" required placeholder="제목을 입력해주세요." id="title" name="title">
+                </label>
+                <br><br>
+                <label>
+                    <span>Category</span><br><br>
+                    <select id="shelterSuggestionSelect">
+                        <option value="animal">동물</option>
+                        <option value="shelter">보호소</option>
+                        <option value="etc">기타사항</option>
+                    </select>
+                </label>
+                <br><br>
+                <label>
+                    <span>Content</span>
+                    <br><br>
+                    <textarea id="writingArea" required placeholder="건의사항을 입력해주세요." name="content"></textarea>
+                </label>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

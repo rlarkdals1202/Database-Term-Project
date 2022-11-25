@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+*
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+#box
+{
+   border: 1px solid #aaaaaa;
+   width: 1000px;
+   height: 810px;
+   margin: 50px auto; 
+   border-radius: 40px;
+}
+
+#innerBox1
+{
+    margin: 20px 50px;
+}
+
+#innerBox2
+{
+    border: 1px solid #aaaaaa;
+    width: 950px;
+    height: 600px;
+    margin: 30px auto;
+    border-radius: 30px;
+}
+
+#innerBox2 div:not(#programImprovement)
+{
+    height: 99px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+#innerBox2 a
+{
+    font-size: 30px;
+    font-weight: lighter;
+    display: inline-block;
+    margin: 20px 20px;
+    color:black;
+    text-decoration: none;
+}
+
+#logoutButton
+{
+    font-weight: lighter;
+    background-color: black;
+    color: white;
+    border: 1px black solid;
+    padding: 15px 25px;
+    font-size: 25px;
+    border-radius: 35px;
+    letter-spacing: 10px;
+    margin-left: 40px;
+}
+
+#logoutButton:hover, #passwordChangeButton:hover
+{
+    box-shadow: 0 0 10px black;
+}
+
+#passwordChangeButton
+{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-left: 170px;
+    font-size: 25px;
+    background-color: black;
+}
+
+#passwordChangeButton
+{
+    color:white;
+}
+
+#animalProtect a::first-letter
+{
+    color:blueviolet;
+}
+
+#animalProtect:hover
+{
+    text-shadow: 0px 0px 5px blueviolet;
+}
+
+#animalInformation a::first-letter
+{
+    color:gold;
+}
+
+#animalInformation:hover
+{
+    text-shadow: 0px 0px 5px gold;
+}
+
+#animalStatistics a::first-letter
+{
+    color:aquamarine;
+}
+
+#animalStatistics:hover
+{
+    text-shadow: 0px 0px 5px aquamarine;
+}
+
+#animalHospital a::first-letter
+{
+    color:crimson;
+}
+
+#animalHospital:hover
+{
+    text-shadow: 0px 0px 5px crimson;
+}
+
+#shelterSuggestion a::first-letter
+{
+    color: orangered;
+}
+
+#shelterSuggestion:hover
+{
+    text-shadow: 0px 0px 5px orangered;
+}
+
+
+#programImprovement a::first-letter
+{
+    color:greenyellow;
+}
+
+#programImprovement:hover
+{
+    text-shadow: 0px 0px 5px greenyellow;
+}
+

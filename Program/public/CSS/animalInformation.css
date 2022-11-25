@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+*
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+#box
+{
+   border: 1px solid #aaaaaa;
+   width: 1020px;
+   height: 810px;
+   margin: 50px auto; 
+   border-radius: 40px;
+}
+
+#innerBox1
+{
+    margin: 20px 50px;
+}
+
+#innerBox2
+{
+    width: 970px;
+    height: 600px;
+    margin: 30px auto;
+}
+
+#animalList
+{
+    display: inline-block;
+    width: 350px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+/*td 높이조절은 테이블 높이에 따라서(나중에 자바스크립트로)*/
+#animalList table
+{
+    width: 330px;
+    height: 660px;
+    text-align: center;
+}
+
+#animalList table tr td:nth-child(1)
+{
+    width: 100px;
+} 
+
+#animalList table tr td:nth-child(2)
+{
+    width: 50px;
+} 
+
+
+#animalList #informationRow
+{
+    background-color: black;
+    color:white;
+    font-weight: lighter;
+}
+
+td
+{
+    word-break: break-all;
+    font-weight: lighter;
+}
+
+tr, td, th
+{
+    border:1px solid #aaaaaa;
+}
+
+
+table, tr, th, td
+{
+    border-collapse: collapse;
+}
+
+table tr:nth-child(even)
+{
+    background-color: #eeeeee;
+}
+
+tr:hover:not(#informationRow)
+{
+    text-shadow: 0 0 5px gold;
+}
+
+#animalInformation
+{
+    display: inline-block;
+    margin-left: 10px;
+    width: 600px;
+    border: 1px solid #aaaaaa;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+#content
+{
+    padding: 10px;
+    font-weight: lighter;
+}
