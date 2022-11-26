@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/suggestion.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JavaScript/suggestion.js" defer></script>
     <title>건의사항</title>
 </head>
 <body>
@@ -15,68 +17,26 @@
         </div>
         <hr style="width: 95%;">
         <div id="innerBox2">
-            <table>
+            <table id="suggestionTable">
                 <tr id="informationRow">
-                    <td style="border-right: 1px solid white;">번호</td>
-                    <td style="border-right: 1px solid white;">작성날짜</td>
-                    <td style="border-right: 1px solid white;">카테고리</td>
-                    <td>제목</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2022년 11월 18일</td>
-                    <td>동물 지원비</td>
-                    <td>동물 지원비에 대해서 문의드립니다.</td>
+                    <td style="border-right: 1px solid white;">No.</td>
+                    <td style="border-right: 1px solid white;">Date</td>
+                    <td style="border-right: 1px solid white;">Category</td>
+                    <td>Title</td>
                 </tr>
             </table>
+        </div>
+        <div id="contentBox">
+            <div id="content">
+                <h1 style="font-weight: lighter;" id="boardTitle">제목</h1>
+                <hr> 
+                <h4 style="font-weight: lighter;">카테고리 : <span id="boardCategory" style="color:dodgerblue;"></span></h4>
+                <h4 style="font-weight: lighter;">작성날짜 : <span id="boardDate" style="color:goldenrod;"></span></h4>
+                <hr> 
+                <h1 style="font-weight: lighter;">Content</h1>
+                <span style="font-size: 20px;" id="boardContent">
+                </span> 
+            </div>
         </div>
     </div>
 </body>
