@@ -9,7 +9,8 @@
 {
     width: 450px;
     height: 600px;
-    border: 1px solid black;
+    border: 1px solid white;
+    box-shadow: 0 0 20px #999999;
     text-align: center;
     margin: 120px auto;
     border-radius: 40px;

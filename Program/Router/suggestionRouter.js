@@ -29,10 +29,57 @@ router.get('/content', async (req, res, next) =>
     const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const query = `SELECT board_date, board_category, board_title, board_content FROM shelter_suggestions WHERE employee_id = "${req.user}" AND board_id = ${req.query.id}`;
+        const query = `SELECT board_id, board_date, board_category, board_title, board_content FROM shelter_suggestions WHERE employee_id = "${req.user}" AND board_id = ${req.query.id}`;
         const [results, fields] = await connection.query(query);
         connection.end();
         res.status(200).send(results);
+    }
+    catch(error)
+    {
+        console.error(error);
+        connection.end();
+        res.status(500).send("error");
+    }
+});
+
+router.delete('/delete', async (req, res, next) =>
+{
+    const connection = await mysql.createConnection(connectInformation);
+    try
+    {
+        const countQuery = `SELECT COUNT(*) FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
+        const [countResults] = await connection.query(countQuery);
+        const numberOfBoards = countResults[0]["COUNT(*)"];
+        const deleteQuery = `DELETE FROM shelter_suggestions WHERE board_id = ${req.body.boardId} AND employee_id = "${req.user}"`;
+        const [deleteResults] = await connection.query(deleteQuery);
+        const afterQuery = `SELECT board_id FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
+        const [afterResults] = await connection.query(afterQuery);
+        if(deleteResults)
+        {
+            if(afterResults.length === 0)
+            {
+                connection.end();
+                res.status(200).send("success");
+            }
+            else
+            {
+                for(let i = 1; i < numberOfBoards; i++)
+                {
+                    const updateQuery = `UPDATE shelter_suggestions SET board_id = ${i} WHERE board_id = ${afterResults[i-1].board_id} AND employee_id = "${req.user}"`;
+                    const [updateResults] = await connection.query(updateQuery);
+                    if(!updateResults)
+                    {
+                        throw new Error();
+                    }
+                }
+                connection.end();
+                res.status(200).send("success");
+            }
+        } 
+        else
+        {
+            throw new Error();
+        }
     }
     catch(error)
     {
@@ -49,7 +96,6 @@ router.get('/information', async (req, res, next) =>
     {
         const query = `SELECT board_id, board_date, board_category, board_title FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
         const [results, fields] = await connection.query(query);
-        console.log(results[0]);
         connection.end();
         res.status(200).send(results);
     }
@@ -92,7 +138,7 @@ router.post('/writing/submit', async (req, res, next) =>
         const [results, fields] = await connection.query(query);
         if(results)
         {
-            res.status(500).send(`<script>alert("글을 성공적으로 작성하였습니다."); window.location.href="http://localhost:8080/suggestion";</script>`);   
+            res.status(200).send(`<script>alert("글을 성공적으로 작성하였습니다."); window.location.href="http://localhost:8080/suggestion";</script>`);   
         }
         else
         {

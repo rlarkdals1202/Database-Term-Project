@@ -27,16 +27,16 @@ router.get('/', (req, res, next) =>
 
 router.post('/change', async (req, res, next) =>
 {
+    const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const connection = await mysql.createConnection(connectInformation);
         const hashedPassword = await bcrypt.hash(req.body.employeePassword, 7);
         const query = `UPDATE employee SET employee_password = '${hashedPassword}' WHERE employee_id = '${req.user}'`;
         const [results, fields] = await connection.query(query);
         if(results)
         {
             connection.end();
-            res.status(200).send("success");
+            res.status(200).send(`<script>alert("비밀번호를 성공적으로 변경하였습니다."); window.location.href = "http://localhost:8080/index";</script>`);
         }
         else
         {
@@ -46,6 +46,7 @@ router.post('/change', async (req, res, next) =>
     }
     catch(error)
     {
+        connection.end();
         console.error(error);
     }
 });

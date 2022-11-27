@@ -71,19 +71,17 @@ passport.use(new LocalStartegy(
 
     async (username, password, done) =>
     {
+        const connection = await mysql.createConnection(connectInformation);
         try
         {
-            const connection = await mysql.createConnection(connectInformation);
             const query = `SELECT * FROM employee WHERE employee_id = '${username}'`;
             const [results, fields] = await connection.query(query);
-            console.log(results);
             if(results.length === 0)
             {
                 connection.end();
                 return (done(null, false, {message: "Incorrect Error"}));
             }
             const isAuthenticate = await bcrypt.compare(password, results[0].employee_password);
-            console.log(isAuthenticate);
             if(isAuthenticate)
             {
                 const employeeId = results[0].employee_id;

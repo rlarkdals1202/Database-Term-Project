@@ -1,13 +1,16 @@
 const $suggestionTable = document.getElementById("suggestionTable");
+const $boardId = document.getElementById("boardId");
 const $boardTitle = document.getElementById("boardTitle");
 const $boardCategory = document.getElementById("boardCategory");
 const $boardDate = document.getElementById("boardDate");
 const $boardContent = document.getElementById("boardContent");
+const $boardDeleteButton = document.getElementById("boardDeleteButton");
+const $boardUpdateButton = document.getElementById("boardUpdateButton");
+
 
 async function getBoard()
 {
     const boards = await axios.get("http://localhost:8080/suggestion/information", {withCredentials: true});
-    console.log(boards);
     const tableHeight = 20 + (boards.data.length);
     $suggestionTable.style.height = `${tableHeight}px`
     const $documentFregment = document.createDocumentFragment();
@@ -33,6 +36,7 @@ async function getBoard()
         $tr.onclick = async () =>
         {
             const boardInformation = await axios.get(`http://localhost:8080/suggestion/content?id=${$tr.firstElementChild.textContent}`, {withCredentials: true});
+            $boardId.textContent = '#' + boardInformation.data[0].board_id;
             $boardTitle.textContent = boardInformation.data[0].board_title;
             $boardContent.textContent = boardInformation.data[0].board_content;
             $boardDate.textContent = boardInformation.data[0].board_date.substring(0, 10);
@@ -45,3 +49,37 @@ async function getBoard()
 }
 
 getBoard();
+
+$boardDeleteButton.addEventListener("click", (event) =>
+{
+    if($boardContent.textContent === "")
+    {
+        event.preventDefault();
+    }
+    else
+    {
+        const answer = confirm("정말 게시물을 삭제하시겠습니까?");
+        if(answer)
+        {
+            axios.delete('http://localhost:8080/suggestion/delete', 
+            {
+                data:
+                {
+                    boardId: Number($boardId.textContent.substring(1)),
+                },
+                withCredentials: true
+            }
+            )
+            .then(() =>
+            {
+                alert("게시글을 삭제하였습니다.");
+                window.location.href = "http://localhost:8080/suggestion";
+            })
+            .catch(() =>
+            {
+                alert("오류가 발생했습니다.");
+                window.location.href = "http://localhost:8080/suggestion";
+            });
+        }
+    }
+});
