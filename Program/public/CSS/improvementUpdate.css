@@ -33,7 +33,7 @@
     font-weight: lighter;
 }
 
-#submitButton
+#updateButton
 {
     font-weight: lighter;
     background-color: black;
@@ -43,10 +43,10 @@
     font-size: 25px;
     border-radius: 35px;
     letter-spacing: 10px;
-    margin-left: 250px;
+    margin-left: 209px;
 }
 
-#submitButton:hover
+#updateButton:hover
 {
     box-shadow: 0 0 10px black;
 }

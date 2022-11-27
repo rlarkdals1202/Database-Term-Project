@@ -8,6 +8,7 @@ import loginRouter from './Router/loginRouter.js';
 import indexRouter from './Router/indexRouter.js';
 import changePasswordRouter from './Router/changPasswordRouter.js';
 import suggestionRouter from './Router/suggestionRouter.js';
+import improvementRouter from './Router/improvementRouter.js';
 
 const app = express();
 app.use(cors({origin: true, credentials: true}));
@@ -24,6 +25,7 @@ app.use('/login', loginRouter);
 app.use('/index', indexRouter);
 app.use('/password', changePasswordRouter);
 app.use('/suggestion', suggestionRouter);
+app.use('/improvement', improvementRouter);
 
 app.use((error, req, res, next) =>
 {

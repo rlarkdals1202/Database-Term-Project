@@ -5,26 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개선사항 작성</title>
-    <link rel="stylesheet" href="../CSS/improvementWriting.css">
+    <link rel="stylesheet" href="../CSS/improvementUpdate.css">
+    <script src="../JavaScript/improvementUpdate.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <form method="post" action="http://localhost:8080/improvement/writing/submit">
+    <form>
         <div id="box">
             <div id="innerBox1">
-                <span style="font-size: 45px; font-weight:lighter; text-shadow: 0 0 5px greenyellow;">Improvement Writing</span>
-                <button type="submit" id="submitButton">SUBMIT</button>
+                <span style="font-size: 45px; font-weight:lighter; text-shadow: 0 0 5px greenyellow;">Improvement Update</span>
+                <button type="button" id="updateButton">UPDATE</button>
             </div>
             <hr style="width: 95%;">
             <div id="innerBox2">
                 <label>
                     <span>Title</span>
                     <br><br>
-                    <input type="text" required placeholder="제목을 입력해주세요." id="title" name="title">
+                    <input type="text" required placeholder="제목을 입력해주세요." id="title">
                 </label>
                 <br><br>
                 <label>
                     <span>Category</span><br><br>
-                    <select id="programImprovementSelect" name="category">
+                    <select id="programImprovementSelect">
                         <option value="programFunction">프로그램 기능</option>
                         <option value="programError">프로그램 오류</option>
                         <option value="programUI">프로그램 UI</option>
@@ -34,7 +36,7 @@
                 <label>
                     <span>Content</span>
                     <br><br>
-                    <textarea id="writingArea" required placeholder="개선사항을 입력해주세요." name="content"></textarea>
+                    <textarea id="writingArea" required placeholder="개선사항을 입력해주세요."></textarea>
                 </label>
             </div>
         </div>

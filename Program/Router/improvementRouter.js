@@ -11,7 +11,7 @@ const connectInformation =
     user: 'kangminKim',
     password: '1234',
     database: 'abandoned_animal_care',
-};
+}
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.use(bodyParser.urlencoded({extended : false}));
 
 router.get('/', (req, res, next) =>
 {
-    fs.createReadStream('./public/HTML/suggestion.html').pipe(res);
+    fs.createReadStream('./public/HTML/improvement.html').pipe(res);
 });
 
 router.get('/content', async (req, res, next) =>
@@ -29,7 +29,7 @@ router.get('/content', async (req, res, next) =>
     const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const query = `SELECT board_id, board_date, board_category, board_title, board_content FROM shelter_suggestions WHERE employee_id = "${req.user}" AND board_id = ${req.query.id}`;
+        const query = `SELECT board_id, board_date, board_category, board_title, board_content FROM program_improvements WHERE employee_id = "${req.user}" AND board_id = ${req.query.id}`;
         const [results, fields] = await connection.query(query);
         connection.end();
         res.status(200).send(results);
@@ -47,12 +47,12 @@ router.delete('/delete', async (req, res, next) =>
     const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const countQuery = `SELECT COUNT(*) FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
+        const countQuery = `SELECT COUNT(*) FROM program_improvements WHERE employee_id = "${req.user}"`;
         const [countResults] = await connection.query(countQuery);
         const numberOfBoards = countResults[0]["COUNT(*)"];
-        const deleteQuery = `DELETE FROM shelter_suggestions WHERE board_id = ${req.body.boardId} AND employee_id = "${req.user}"`;
+        const deleteQuery = `DELETE FROM program_improvements WHERE board_id = ${req.body.boardId} AND employee_id = "${req.user}"`;
         const [deleteResults] = await connection.query(deleteQuery);
-        const afterQuery = `SELECT board_id FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
+        const afterQuery = `SELECT board_id FROM program_improvements WHERE employee_id = "${req.user}"`;
         const [afterResults] = await connection.query(afterQuery);
         if(deleteResults)
         {
@@ -65,7 +65,7 @@ router.delete('/delete', async (req, res, next) =>
             {
                 for(let i = 1; i < numberOfBoards; i++)
                 {
-                    const updateQuery = `UPDATE shelter_suggestions SET board_id = ${i} WHERE board_id = ${afterResults[i-1].board_id} AND employee_id = "${req.user}"`;
+                    const updateQuery = `UPDATE program_improvements SET board_id = ${i} WHERE board_id = ${afterResults[i-1].board_id} AND employee_id = "${req.user}"`;
                     const [updateResults] = await connection.query(updateQuery);
                     if(!updateResults)
                     {
@@ -91,7 +91,7 @@ router.delete('/delete', async (req, res, next) =>
 
 router.get('/update', async (req, res, next) =>
 {
-    fs.createReadStream("./public/HTML/suggestionUpdate.html").pipe(res);
+    fs.createReadStream("./public/HTML/improvementUpdate.html").pipe(res);
 });
 
 router.put('/update/process', async (req, res, next) =>
@@ -103,7 +103,7 @@ router.put('/update/process', async (req, res, next) =>
         const boardTitle = req.body.boardTitle;
         const boardCategory = req.body.boardCategory;
         const boardContent = req.body.boardContent;
-        const updateQuery = `UPDATE shelter_suggestions SET board_title = "${boardTitle}", board_category = "${boardCategory}", board_content = "${boardContent}" WHERE employee_id = "${req.user}" AND board_id = ${boardId}`;
+        const updateQuery = `UPDATE program_improvements SET board_title = "${boardTitle}", board_category = "${boardCategory}", board_content = "${boardContent}" WHERE employee_id = "${req.user}" AND board_id = ${boardId}`;
         const [updateResults] = await connection.query(updateQuery);
         if(updateResults)
         {
@@ -129,7 +129,7 @@ router.get('/information', async (req, res, next) =>
     const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const query = `SELECT board_id, board_date, board_category, board_title FROM shelter_suggestions WHERE employee_id = "${req.user}"`;
+        const query = `SELECT board_id, board_date, board_category, board_title FROM program_improvements WHERE employee_id = "${req.user}"`;
         const [results, fields] = await connection.query(query);
         connection.end();
         res.status(200).send(results);
@@ -144,7 +144,7 @@ router.get('/information', async (req, res, next) =>
 
 router.get('/writing', (req, res, next) =>
 {
-    fs.createReadStream('./public/HTML/suggestionWriting.html').pipe(res);
+    fs.createReadStream('./public/HTML/improvementWriting.html').pipe(res);
 });
 
 router.post('/writing/submit', async (req, res, next) =>
@@ -167,13 +167,13 @@ router.post('/writing/submit', async (req, res, next) =>
     const connection = await mysql.createConnection(connectInformation);
     try
     {
-        const [numberOfBoards] = await connection.query(`SELECT COUNT(*) FROM shelter_suggestions WHERE employee_id = "${req.user}"`);
+        const [numberOfBoards] = await connection.query(`SELECT COUNT(*) FROM program_improvements WHERE employee_id = "${req.user}"`);
         const boardId = numberOfBoards[0]["COUNT(*)"] + 1;
-        const query = `INSERT INTO shelter_suggestions(board_id, board_title, board_category, board_date, board_content, employee_id) VALUES(${boardId}, "${title}", "${category}", "${date}", "${content}", "${employeeId}")`;
+        const query = `INSERT INTO program_improvements(board_id, board_title, board_category, board_date, board_content, employee_id) VALUES(${boardId}, "${title}", "${category}", "${date}", "${content}", "${employeeId}")`;
         const [results, fields] = await connection.query(query);
         if(results)
         {
-            res.status(200).send(`<script>alert("글을 성공적으로 작성하였습니다."); window.location.href="http://localhost:8080/suggestion";</script>`);   
+            res.status(200).send(`<script>alert("글을 성공적으로 작성하였습니다."); window.location.href="http://localhost:8080/improvement";</script>`);   
         }
         else
         {
@@ -184,7 +184,7 @@ router.post('/writing/submit', async (req, res, next) =>
     {
         connection.end();
         console.error(error);
-        res.status(500).send(`<script>alert("오류가 발생했습니다."); window.location.href="http://localhost:8080/suggestion";</script>`);
+        res.status(500).send(`<script>alert("오류가 발생했습니다."); window.location.href="http://localhost:8080/improvement";</script>`);
     }
 });
 

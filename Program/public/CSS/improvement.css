@@ -7,7 +7,8 @@
 
 #box
 {
-   border: 1px solid #aaaaaa;
+   border: 1px solid white;
+   box-shadow: 0 0 20px #999999;
    width: 1020px;
    height: 810px;
    margin: 50px auto; 
@@ -22,17 +23,32 @@
 #innerBox2
 {
     width: 970px;
-    height: 600px;
+    height: 200px;
     margin: 30px auto;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #innerBox2 table
 {
     width: 950px;
-    height: 600px;
+    height: 200px;
     text-align: center;
     padding: 10px;
+}
+
+#contentBox
+{
+    width: 970px;
+    height: 400px;
+    border: 1px solid #aaaaaa;
+    margin: 30px auto;
+    overflow-y: scroll;
+}
+
+#content
+{
+    padding: 10px;
+    font-weight: lighter;
 }
 
 table td:nth-child(1)
@@ -86,6 +102,22 @@ td
 }
 
 #writingButton:hover
+{
+    box-shadow: 0 0 10px black;
+}
+
+#boardDeleteButton, #boardUpdateButton
+{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: lighter;
+    border-radius: 15px;
+    margin: 2px;
+    border: 1px solid black;
+}
+
+#boardDeleteButton:hover, #boardUpdateButton:hover
 {
     box-shadow: 0 0 10px black;
 }
