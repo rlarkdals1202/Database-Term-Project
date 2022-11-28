@@ -7,7 +7,8 @@
 
 #box
 {
-   border: 1px solid #aaaaaa;
+   border: 1px solid white;
+   box-shadow: 0 0 20px #999999;
    width: 1020px;
    height: 810px;
    margin: 50px auto; 
@@ -22,38 +23,34 @@
 #innerBox2
 {
     width: 970px;
-    height: 600px;
+    height: 200px;
     margin: 30px auto;
-}
-
-#hospitalList
-{
-    display: inline-block;
-    width: 350px;
-    height: 600px;
     overflow-y: scroll;
 }
 
+
+
 /*td 높이조절은 테이블 높이에 따라서(나중에 자바스크립트로)*/
-#hospitalList table
+#innerBox2 table
 {
-    width: 330px;
-    height: 660px;
+    width: 950px;
+    height: 200px;
     text-align: center;
+    padding: 10px;
 }
 
-#hospitalList table tr td:nth-child(1)
+#hospitalTable tr td:nth-child(1)
 {
-    width: 100px;
+    width: 400px;
 } 
 
-#hospitalList table tr td:nth-child(2)
+#hospitalTable tr td:nth-child(2)
 {
-    width: 50px;
+    width: 300px;
 } 
 
 
-#hospitalList #informationRow
+#informationRow
 {
     background-color: black;
     color:white;
@@ -89,11 +86,10 @@ tr:hover:not(#informationRow)
 
 #hospitalInformation
 {
-    display: inline-block;
-    margin-left: 10px;
-    width: 600px;
+    margin: 30px auto;
+    width: 970px;
     border: 1px solid #aaaaaa;
-    height: 600px;
+    height: 400px;
     overflow-y: scroll;
 }
 

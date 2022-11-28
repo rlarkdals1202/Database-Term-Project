@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동물 병원 정보</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JavaScript/animalHospital.js" defer></script>
     <link rel="stylesheet" href="../CSS/animalHospital.css">
 </head>
 <body>
@@ -14,69 +16,25 @@
         </div>
         <hr style="width: 95%;">
         <div id="innerBox2">
-            <div id="hospitalList">
-                <table>
-                    <tr id="informationRow">
-                        <td style="border-right: white;">Address</td>
-                        <td>Hospital</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 상도동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 관악구 신림동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                    <tr>
-                        <td>서울특별시 동작구 흑석동</td>
-                        <td>XX동물병원</td>
-                    </tr>
-                </table>
-            </div>
-            <div id="hospitalInformation">
-                <div id="content">
-                    <h1 style="font-weight: lighter;">XX동물병원</h1>
-                    <hr> 
-                    <h2 style="font-weight: lighter;">I. Address</h2>
-                    <span style="font-size: 20px;" id="hospitalAddressText">서울특별시 동작구 흑석동</span>
-                    <br><br>
-                    <h2 style="font-weight: lighter;">II. Contact</h2>
-                    <span style="font-size: 20px;" id="hospitalPhoneText">02-8xx-xxxx</span>
-                    <br><br>
-                    <h2 style="font-weight: lighter;">III. About Hospital</h2>
-                    <span style="font-size: 20px;" id="hospitalPhoneText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </span>
-                </div>
+            <table id="hospitalTable">
+                <tr id="informationRow">
+                    <td style="border-right: white;">Address</td>
+                    <td>Hospital</td>
+                </tr>
+            </table>
+        </div>
+        <div id="hospitalInformation">
+            <div id="content">
+                <h1 style="font-weight: lighter;" id="hospitalNameText">병원명</h1>
+                <hr> 
+                <h2 style="font-weight: lighter;">I. Address</h2>
+                <span style="font-size: 20px;" id="hospitalAddressText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">II. Contact</h2>
+                <span style="font-size: 20px;" id="hospitalPhoneText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">III. About Hospital</h2>
+                <span style="font-size: 20px;" id="hospitalInfoText"></span>
             </div>
         </div>
     </div>
