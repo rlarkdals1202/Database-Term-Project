@@ -38,7 +38,7 @@ async function main()
                 const employeePassword = scanf("%s");
 
                 // Password 암호화 (bcrypt 모듈 통해서)
-                const hashedPassword = await bcrypt.hash(employeePassword, 7)
+                const hashedPassword = await bcrypt.hash(employeePassword, 7);
                 
                 process.stdout.write("Enter employee gender(male OR female) : ");
                 const employeeGender = scanf("%s");
