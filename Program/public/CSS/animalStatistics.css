@@ -7,7 +7,8 @@
 
 #box
 {
-   border: 1px solid #aaaaaa;
+   border: 1px solid white;
+   box-shadow: 0 0 20px #999999;
    width: 1020px;
    height: 810px;
    margin: 50px auto; 

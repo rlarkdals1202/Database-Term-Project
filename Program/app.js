@@ -10,6 +10,9 @@ import changePasswordRouter from './Router/changPasswordRouter.js';
 import suggestionRouter from './Router/suggestionRouter.js';
 import improvementRouter from './Router/improvementRouter.js';
 import animalHospitalRouter from './Router/animalHospitalRouter.js';
+import animalStatisticsRouter from './Router/animalStatisticsRouter.js';
+import caresRouter from './Router/careRouter.js';
+import fs from 'fs';
 
 const app = express();
 app.use(cors({origin: true, credentials: true}));
@@ -27,9 +30,17 @@ app.use('/index', indexRouter);
 app.use('/password', changePasswordRouter);
 app.use('/suggestion', suggestionRouter);
 app.use('/improvement', improvementRouter);
+app.use('/care', caresRouter);
 app.use('/animal/hospital', animalHospitalRouter);
+app.use('/animal/statistics', animalStatisticsRouter);
+
+app.use((req, res, next) =>
+{
+    fs.createReadStream('./public/HTML/404NotFound.html').pipe(res);
+});
 
 app.use((error, req, res, next) =>
 {
-    res.status(403).send("error");
+    console.error(error);
+    res.status(500).send("error");
 });

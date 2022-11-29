@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물 케어</title>
+    <link rel="stylesheet" href="../CSS/care.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JavaScript/care.js" defer></script>
+</head>
+<body>
+    <div id="box">
+        <div id="innerBox1">
+            <span style="font-size: 45px; font-weight: lighter; text-shadow: 0 0 5px blueviolet;">Animal Care</span>
+            <button type="button" id="animalInformationAddButton" onclick="window.location.href = `http://localhost:8080/care/add`;">+</button>
+        </div>
+        <hr style="width: 95%;">
+        <div id="innerBox2">
+            <table id="animalList">
+                <tr id="informationRow">
+                    <td style="border-right: white;">ID</td>
+                    <td>Sort</td>
+                </tr>
+            </table>
+        </div>
+        <div id="animalInformation">
+            <div id="content">
+                <h1 style="font-weight: lighter; display: inline-block;">동물 정보</h1>
+                <button type="button" id="animalInformationUpdateButton">U</button>
+                <button type="button" id="animalInformationDeleteButton">D</button>
+                <hr> 
+                <h2 style="font-weight: lighter;">I. Type</h2>
+                <span style="font-size: 20px;" id="animalTypeText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">II. Sort</h2>
+                <span style="font-size: 20px;" id="animalSortText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">III. Age</h2>
+                <span style="font-size: 20px;" id="animalAgeText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">IV. Gender</h2>
+                <span style="font-size: 20px;" id="animalGenderText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">V. Name</h2>
+                <span style="font-size: 20px;" id="animalNameText"></span>
+                <br><br>
+                <h2 style="font-weight: lighter;">VI. About Animal (Animal Memo)</h2>
+                <span style="font-size: 20px;" id="animalMemoText"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

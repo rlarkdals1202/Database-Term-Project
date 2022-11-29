@@ -7,7 +7,8 @@
 
 #box
 {
-   border: 1px solid #aaaaaa;
+   border: 1px solid white;
+   box-shadow: 0 0 20px #999999;
    width: 1020px;
    height: 810px;
    margin: 50px auto; 
@@ -24,9 +25,10 @@
     width: 970px;
     height: 600px;
     margin: 30px auto;
+    overflow-y: scroll;
 }
 
-#innerBox2 label span
+#innerBox2 label, span
 {
     font-size:19px;
     font-weight: lighter;
@@ -53,15 +55,28 @@
 #animalMemo
 {
     resize: none;
-    width: 950px;
+    width: 920px;
     height: 250px;
     border: 1px solid #aaaaaa;
 }
 
-#animalName, #animalType, #animalSort
+#animalName, #animalId, #animalSort, #animalAge
 {
-    width: 475px;
+    width: 575px;
     border: 1px solid #aaaaaa;
     border-radius: 20px;
     padding: 5px 10px;
+}
+
+select 
+{
+    width: 200px; 
+    padding: 5px 10px; 
+    border: 1px solid #aaaaaa;
+    font-family: inherit;  
+    background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99761B495C84AA8716') no-repeat 95% 50%; 
+    border-radius: 0px; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
 }
