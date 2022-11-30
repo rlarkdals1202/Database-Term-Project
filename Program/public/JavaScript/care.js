@@ -5,6 +5,9 @@ const $animalNameText = document.getElementById("animalNameText");
 const $animalMemoText = document.getElementById("animalMemoText");
 const $animalAgeText = document.getElementById("animalAgeText");
 const $animalGenderText = document.getElementById("animalGenderText");
+const $animalIdText = document.getElementById("animalIdText");
+const $animalInformationDeleteButton = document.getElementById("animalInformationDeleteButton");
+const $animalInformationUpdateButton = document.getElementById("animalInformationUpdateButton");
 
 async function getAnimalList()
 {
@@ -38,8 +41,9 @@ async function getAnimalList()
             $animalSortText.textContent = animalSort;
             $animalNameText.textContent = animalName;
             $animalMemoText.textContent = animalMemo;
-            $animalAgeText.textContent = animalAge;
+            $animalAgeText.textContent = animalAge + "살";
             $animalGenderText.textContent = animalGender;
+            $animalIdText.textContent = '#' + $tr.firstElementChild.textContent;
         };
 
         $documentFregment.appendChild($tr);
@@ -48,3 +52,49 @@ async function getAnimalList()
 }
 
 getAnimalList();
+
+$animalInformationDeleteButton.addEventListener("click", (event) =>
+{
+    if($animalIdText.textContent === "")
+    {
+        event.preventDefault();
+    }
+    else
+    {
+        const answer = confirm("정말 동물 정보를 삭제하시겠습니까?");
+        if(answer)
+        {
+            axios.delete("http://localhost:8080/care/delete",
+            {
+                data:
+                {
+                    animalId: $animalIdText.textContent.substring(1),
+                },
+                withCredentials: true,
+            })
+            .then(() =>
+            {
+                alert("동물 정보를 삭제하였습니다.");
+                window.location.href = "http://localhost:8080/care";
+            })
+            .catch(() =>
+            {
+                alert("오류가 발생했습니다.");
+                window.location.href = "http://localhost:8080/care";
+            });
+        }
+    }
+});
+
+$animalInformationUpdateButton.addEventListener("click", (event) =>
+{
+    if($animalIdText.textContent === "")
+    {
+        event.preventDefault();
+    }
+    else
+    {
+        const animalId = $animalIdText.textContent.substring(1);
+        window.location.href = `http://localhost:8080/care/update?animalId=${animalId}`;
+    }
+});
