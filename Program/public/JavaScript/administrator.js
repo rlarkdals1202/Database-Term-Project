@@ -6,6 +6,7 @@
     (1). 보호소 직원의 회원가입
     (2). 협력하는 동물 병원 아이디 기입
     (3). 직원 정보 보기
+    (4). 보호소 건의사항, 프로그램 개선사항 보기
     (동물병원에 대한 정보는 미리 데이터베이스에 저장되어 있음.)
 */
 
@@ -138,30 +139,51 @@ async function administrate(connection, shelterId, shelterAddress)
     while(true)
     {
         console.log("1. Employee SignUp");
-        console.log("2. Enter animal hospital");
-        console.log("3. Show employee information");
-        console.log("4. Exit");
+        console.log("2. Delete employee information");
+        console.log("3. Update employee information");
+        console.log("4. Show employee information");
+        console.log("5. Enter animal hospital");
+        console.log("6. Delete animal hospital");
+        console.log("7. Show shelter suggestion");
+        console.log("8. Show program improvements");
+        console.log("9. Exit");
         process.stdout.write("> ");
         const answer = scanf("%d");
-        if(answer === 1)
+        switch(answer)
         {
-            await signUp(connection, shelterId);
-        }
-        else if(answer === 2)
-        {
-            await enterAnimalHospital(connection, shelterId);
-        }
-        else if(answer === 3)
-        {
-            await showEmployeeInformation(connection);
-        }
-        else if(answer === 4)
-        {
-            break;
-        }
-        else
-        {
-            console.warn("Please enter right number.\n");
+            case 1:
+                await signUp(connection, shelterId);
+                break;
+
+            case 2:
+                break;
+            
+            case 3:
+                break;
+
+            case 4:
+                await showEmployeeInformation(connection);
+                break;
+
+            case 5:
+                await enterAnimalHospital(connection, shelterId);
+                break;
+
+            case 6:
+                break;
+
+            case 7:
+                break;
+
+            case 8:
+                break;
+
+            case 9:
+                return;
+
+            default:
+                console.warn("Please enter right number.");
+                break;
         }
     }
 }

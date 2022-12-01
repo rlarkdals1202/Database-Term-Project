@@ -12,6 +12,7 @@ import improvementRouter from './Router/improvementRouter.js';
 import animalHospitalRouter from './Router/animalHospitalRouter.js';
 import animalStatisticsRouter from './Router/animalStatisticsRouter.js';
 import caresRouter from './Router/careRouter.js';
+import animalInformationRouter from './Router/animalInformationRouter.js';
 import fs from 'fs';
 
 const app = express();
@@ -33,6 +34,7 @@ app.use('/improvement', improvementRouter);
 app.use('/care', caresRouter);
 app.use('/animal/hospital', animalHospitalRouter);
 app.use('/animal/statistics', animalStatisticsRouter);
+app.use('/animal/information', animalInformationRouter);
 
 app.use((req, res, next) =>
 {

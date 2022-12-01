@@ -7,10 +7,9 @@ const $hospitalInfoText = document.getElementById("hospitalInfoText");
 async function getList()
 {
     const hospitalIds = await axios.get("http://localhost:8080/animal/hospital/ids", {withCredentials: true});
-    const tableHeight = 20 + (hospitalIds.data.length * 20);
+    const tableHeight = 40 + (hospitalIds.data.length * 40);
     $hospitalTable.style.height = `${tableHeight}px`;
     const $documentFregment = document.createDocumentFragment();
-    console.log(hospitalIds.data);
     for(const hospitalId of hospitalIds.data)
     {
         const hospitalAddresses = await axios.get(`http://localhost:8080/animal/hospital/addresses?hospitalId=${hospitalId.animal_hospital_id}`);

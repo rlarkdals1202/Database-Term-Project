@@ -28,9 +28,6 @@
     overflow-y: scroll;
 }
 
-
-
-/*td 높이조절은 테이블 높이에 따라서(나중에 자바스크립트로)*/
 #innerBox2 table
 {
     width: 950px;
