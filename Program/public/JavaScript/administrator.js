@@ -5,6 +5,7 @@
     관리자 프로그램의 기능
     (1). 보호소 직원의 회원가입
     (2). 협력하는 동물 병원 아이디 기입
+    (3). 직원 정보 보기
     (동물병원에 대한 정보는 미리 데이터베이스에 저장되어 있음.)
 */
 
@@ -89,6 +90,32 @@ async function enterAnimalHospital(connection, shelterId)
     }
 }
 
+async function showEmployeeInformation(connection)
+{
+    try
+    {
+        const query = `SELECT employee_id, employee_gender, employee_birthday, employee_phone_number FROM employee`;
+        const [result] = await connection.query(query);
+        if(result)
+        {
+            console.log("\n=============<<<EMPLOYEE LIST>>>=============");
+            for(const employee of result)
+            {
+                console.log(`Employee ID : ${employee.employee_id}`);
+                console.log(`Employee birthday : ${employee.employee_birthday}`);
+                console.log(`Employee gender : ${employee.employee_gender}`);
+                console.log(`Employee phone number : ${employee.employee_phone_number}`);
+                console.log("=============================================");
+            }
+            console.log();
+        }
+    }
+    catch(error)
+    {
+        console.error(error + "\n");
+    }
+}
+
 async function administrate(connection, shelterId, shelterAddress)
 {
     let shelterName = null;
@@ -112,7 +139,8 @@ async function administrate(connection, shelterId, shelterAddress)
     {
         console.log("1. Employee SignUp");
         console.log("2. Enter animal hospital");
-        console.log("3. Exit");
+        console.log("3. Show employee information");
+        console.log("4. Exit");
         process.stdout.write("> ");
         const answer = scanf("%d");
         if(answer === 1)
@@ -125,11 +153,15 @@ async function administrate(connection, shelterId, shelterAddress)
         }
         else if(answer === 3)
         {
+            await showEmployeeInformation(connection);
+        }
+        else if(answer === 4)
+        {
             break;
         }
         else
         {
-            console.warn("Print enter right number.\n");
+            console.warn("Please enter right number.\n");
         }
     }
 }
@@ -142,10 +174,9 @@ async function main()
         let shelterAddress = null;
         let isShelterIdExist = false;
         const connection = await mysql.createConnection(connectInformation);
-
         while(true)
         {
-            process.stdout.write("Please enter the SHELTER ID > ");
+            process.stdout.write("\nPlease enter the SHELTER ID > ");
             shelterId = scanf("%s");
             const query = `SELECT shelter_id, shelter_address FROM shelter`;
             const [queryResult] = await connection.query(query);
