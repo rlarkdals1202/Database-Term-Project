@@ -65,7 +65,7 @@ CREATE TABLE animal
     animal_age INTEGER,
     employee_id VARCHAR(100),
     animal_memo TEXT,
-    FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
+    FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 #동물 품종 정보 테이블
@@ -78,23 +78,25 @@ CREATE TABLE animal_sort_information
 #프로그램 개선사항 게시물 테이블
 CREATE TABLE program_improvements
 (
-    board_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    board_id INTEGER
     board_title VARCHAR(300),
     board_category VARCHAR(100),
-    board_date DATE,
+    board_date VARCHAR(50),
     board_content MEDIUMTEXT,
     employee_id VARCHAR(100),
-    FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
+    FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY(board_id, employee_id)
 );
 
 #보호소 건의사항 게시물 테이블
 CREATE TABLE shelter_suggestions
 (
-    board_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    board_id INTEGER
     board_title VARCHAR(300),
     board_category VARCHAR(100),
-    board_date DATE,
+    board_date VARCHAR(50),
     board_content MEDIUMTEXT,
     employee_id VARCHAR(100),
-    FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
+    FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY(board_id, employee_id)
 );
