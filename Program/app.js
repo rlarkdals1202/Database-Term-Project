@@ -24,7 +24,10 @@ app.use(session({secret : 'keyboard cat', resave: false, saveUninitialized: fals
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('public'));
-app.listen(8080);
+app.listen(8080, () =>
+{
+    console.log("Server is running.");
+});
 
 app.use('/login', loginRouter);
 app.use('/index', indexRouter);

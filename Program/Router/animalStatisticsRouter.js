@@ -92,4 +92,124 @@ router.get("/animalAge", async (req, res, next) =>
     }
 });
 
+router.get("/typeInformation", async (req, res, next) =>
+{
+    const connection = await mysql.createConnection(connectInformation);
+    try
+    {
+        const typeInformationArray = [];
+        const getTypeQuery = `SELECT DISTINCT animal_type FROM animal NATURAL JOIN animal_sort_information`;
+        const [getTypeResult] = await connection.query(getTypeQuery);
+        if(getTypeResult.length !== 0)
+        {
+            for(const animalTypeData of getTypeResult)
+            {
+                const getTypeNumberQuery = `SELECT COUNT(*) FROM animal NATURAL JOIN animal_sort_information WHERE animal_type = "${animalTypeData.animal_type}"`;
+                const [getNumberOfTypeResult] = await connection.query(getTypeNumberQuery);
+                if(getNumberOfTypeResult.length !== 0)
+                {
+                    const animalType = animalTypeData.animal_type;
+                    const numberOfType = getNumberOfTypeResult[0]["COUNT(*)"];
+                    typeInformationArray.push({type: animalType, number: numberOfType});
+                }
+                else
+                {
+                    throw new Error();
+                }
+            }
+            res.status(200).send(typeInformationArray);
+        }
+        else
+        {
+            throw new Error();
+        }
+    }
+    catch(error)
+    {
+        console.error(error);
+        connection.end();
+        res.status(500).send("error");
+    }
+});
+
+router.get("/dogSort", async (req, res, next) =>
+{
+    const connection = await mysql.createConnection(connectInformation);
+    const sortInformation = [];
+    try
+    {
+        const getSortQuery = `SELECT animal_sort FROM animal NATURAL JOIN animal_sort_information WHERE animal_type = "개"`;
+        const [getSortResult] = await connection.query(getSortQuery);
+        if(getSortResult.length !== 0)
+        {
+            for(const animalSort of getSortResult)
+            {
+                const getCountQuery = `SELECT COUNT(*) FROM animal WHERE animal_sort = "${animalSort.animal_sort}"`;
+                const [getCountResult] = await connection.query(getCountQuery);
+                if(getCountResult.length !== 0)
+                {
+                    const sort = animalSort.animal_sort;
+                    const number = getCountResult[0]["COUNT(*)"];
+                    sortInformation.push({sort, number});
+                }
+                else
+                {
+                    throw new Error();
+                }
+            }
+        }
+        else
+        {
+            throw new Error();
+        }
+        res.status(200).send(sortInformation);
+    }
+    catch(error)
+    {
+        console.error(error);
+        connection.end();
+        res.status(500).send("error");
+    }
+});
+
+router.get("/catSort", async (req, res, next) =>
+{
+    const connection = await mysql.createConnection(connectInformation);
+    const sortInformation = [];
+    try
+    {
+        const getSortQuery = `SELECT animal_sort FROM animal NATURAL JOIN animal_sort_information WHERE animal_type = "고양이"`;
+        const [getSortResult] = await connection.query(getSortQuery);
+        if(getSortResult.length !== 0)
+        {
+            for(const animalSort of getSortResult)
+            {
+                const getCountQuery = `SELECT COUNT(*) FROM animal WHERE animal_sort = "${animalSort.animal_sort}"`;
+                const [getCountResult] = await connection.query(getCountQuery);
+                if(getCountResult.length !== 0)
+                {
+                    const sort = animalSort.animal_sort;
+                    const number = getCountResult[0]["COUNT(*)"];
+                    sortInformation.push({sort, number});
+                }
+                else
+                {
+                    throw new Error();
+                }
+            }
+        }
+        else
+        {
+            throw new Error();
+        }
+        res.status(200).send(sortInformation);
+    }
+    catch(error)
+    {
+        console.error(error);
+        connection.end();
+        res.status(500).send("error");
+    }
+});
+
 export default router;

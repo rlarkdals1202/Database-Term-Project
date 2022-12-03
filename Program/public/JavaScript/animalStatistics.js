@@ -1,15 +1,51 @@
 const $animalTypeTd = document.getElementById("animalTypeTd");
 const $animalAgeTd = document.getElementById("animalAgeTd");
 const $animalGenderTd = document.getElementById("animalGenderTd");
+const $animalDogSortTd = document.getElementById("animalDogSortTd");
+const $animalCatSortTd = document.getElementById("animalCatSortTd");
 const context = document.getElementById("chartPicture");
 context.getContext('2d');
 
 let configObject = null;
 let myChart = null;
 
-$animalTypeTd.addEventListener("click", () =>
+$animalTypeTd.addEventListener("click", async () =>
 {
-    console.log(1);
+    if(myChart)
+    {
+        myChart.destroy();
+    }
+    const animalTypeInformation = await axios.get("http://localhost:8080/animal/statistics/typeInformation");
+    const animalType = [];
+    const numberOfAnimalType = [];
+    const rgbArray = [];
+    for(const information of animalTypeInformation.data)
+    {
+        animalType.push(information.type);
+        numberOfAnimalType.push(information.number);
+        rgbArray.push(`rgb(${Math.trunc(Math.random() * 256)}, ${Math.trunc(Math.random() * 256)}, ${Math.trunc(Math.random() * 256)})`);
+    }
+    configObject =
+    {
+        type: 'pie',
+        data:
+        {
+            labels: animalType,
+            datasets:
+            [
+                {
+                    label: "Animal Type",
+                    data: numberOfAnimalType,
+                    backgroundColor: rgbArray,
+                }
+            ],
+        },
+        options:
+        {
+            maintainAspectRatio: false,
+        }
+    }
+    myChart = new Chart(context, configObject);
 });
 
 $animalAgeTd.addEventListener("click", async () =>
@@ -27,7 +63,7 @@ $animalAgeTd.addEventListener("click", async () =>
             labels: ["0 ~ 5", "6 ~ 9", "10 ~ 14", "15 ~ 19", "19 ~"],
             datasets:
             [{
-                label: 'animalAge',
+                label: 'Animal Age',
                 fill: false,
                 data: 
                 [
@@ -47,13 +83,13 @@ $animalAgeTd.addEventListener("click", async () =>
                 ],
                 borderColor:
                 [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
                 ],
-                borderWidth: 4,
+                borderWidth: 1,
             }],
         },
         options:
@@ -61,14 +97,13 @@ $animalAgeTd.addEventListener("click", async () =>
             maintainAspectRatio: false,
             scales:
             {
-                yAxes: 
-                [{
-                    ticks: 
+                y:
+                {
+                    ticks:
                     {
-                        beginAtZero: true,
-                        fixedStepSize: 1,
-                    }
-                 }]
+                        precision: 0,
+                    },
+                }
             }
         }
     }
@@ -105,65 +140,120 @@ $animalGenderTd.addEventListener("click", async () =>
     myChart = new Chart(context, configObject);
 });
 
-//context.getContext('2d');
-// const myChart = new Chart(context, configObject);
-// const myChart = new Chart(context, {
-//     type: 'bar', // 차트의 형태
-//     data: { // 차트에 들어갈 데이터
-//         labels: [
-//             //x 축
-//             '1','2','3','4','5','6','7'
-//         ],
-//         datasets: [
-//             { //데이터
-//                 label: 'test1', //차트 제목
-//                 fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
-//                 data: [
-//                     21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
-//                 ],
-//                 backgroundColor: [
-//                     //색상
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(153, 102, 255, 0.2)',
-//                     'rgba(255, 159, 64, 0.2)'
-//                 ],
-//                 borderColor: [
-//                     //경계선 색상
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(153, 102, 255, 1)',
-//                     'rgba(255, 159, 64, 1)'
-//                 ],
-//                 borderWidth: 1 //경계선 굵기
-//             }/* ,
-//             {
-//                 label: 'test2',
-//                 fill: false,
-//                 data: [
-//                     8, 34, 12, 24
-//                 ],
-//                 backgroundColor: 'rgb(157, 109, 12)',
-//                 borderColor: 'rgb(157, 109, 12)'
-//             } */
-//         ]
-//     },
-//     options: 
-//     {
-//         scales: 
-//         {
-//             yAxes: [
-//                 {
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             ]
-//         },
-//         maintainAspectRatio: false,
-//     }
-// });
+$animalDogSortTd.addEventListener("click", async () =>
+{
+    if(myChart)
+    {
+        myChart.destroy();
+    }
+    const dogSortInformation = await axios.get("http://localhost:8080/animal/statistics/dogSort");
+    const dogSort = [];
+    const numberOfSort = [];
+    const rgbArray = [];
+    const rgbBorderArray = [];
+    for(const information of dogSortInformation.data)
+    {
+        dogSort.push(information.sort);
+        numberOfSort.push(information.number);
+        const red = Math.trunc(Math.random() * 256);
+        const green = Math.trunc(Math.random() * 256);
+        const blue = Math.trunc(Math.random() * 256);
+        rgbArray.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
+        rgbBorderArray.push(`rgb(${red}, ${green}, ${blue})`);
+    }
+    configObject =
+    {
+        type: 'bar',
+        data:
+        {
+            labels: dogSort,
+            datasets:
+            [
+                {
+                    axis: 'y',
+                    label: 'Dog Sort',
+                    data:  numberOfSort,
+                    fill: false,
+                    backgroundColor: rgbArray,
+                    borderColor: rgbBorderArray,
+                    borderWidth: 1,
+                }
+            ],
+        },
+        options:
+        {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales:
+            {
+                x:
+                {
+                    ticks:
+                    {
+                        precision: 0,
+                    },
+                }
+            }
+        }
+    };
+    myChart = new Chart(context, configObject);
+});
+
+$animalCatSortTd.addEventListener("click", async () =>
+{
+    if(myChart)
+    {
+        myChart.destroy();
+    }
+    const catSortInformation = await axios.get("http://localhost:8080/animal/statistics/catSort");
+    const catSort = [];
+    const numberOfSort = [];
+    const rgbArray = [];
+    const rgbBorderArray = [];
+    for(const information of catSortInformation.data)
+    {
+        catSort.push(information.sort);
+        numberOfSort.push(information.number);
+        const red = Math.trunc(Math.random() * 256);
+        const green = Math.trunc(Math.random() * 256);
+        const blue = Math.trunc(Math.random() * 256);
+        rgbArray.push(`rgba(${red}, ${green}, ${blue}, 0.2)`);
+        rgbBorderArray.push(`rgb(${red}, ${green}, ${blue})`);
+    }
+    configObject =
+    {
+        type: 'bar',
+        data:
+        {
+            labels: catSort,
+            datasets:
+            [
+                {
+                    axis: 'y',
+                    label: 'Cat Sort',
+                    data:  numberOfSort,
+                    fill: false,
+                    backgroundColor: rgbArray,
+                    borderColor: rgbBorderArray,
+                    borderWidth: 1,
+                }
+            ],
+        },
+        options:
+        {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales:
+            {
+                x:
+                {
+                    ticks:
+                    {
+                        precision: 0,
+                    },
+                }
+            }
+        }
+    };
+    myChart = new Chart(context, configObject);
+});

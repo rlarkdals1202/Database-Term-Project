@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동물 통계 자료</title>
     <link rel="stylesheet" href="../CSS/animalStatistics.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../JavaScript/animalStatistics.js" defer></script>
 </head>
@@ -29,29 +29,14 @@
                         <td id="animalGenderTd"><span>Animal Gender</span></td>
                     </tr>
                     <tr>
-                        <td><span>Dog Sort</span></td>
+                        <td id="animalDogSortTd"><span>Dog Sort</span></td>
                     </tr>
                     <tr>
-                        <td><span>Cat Sort</span></td>
+                        <td id="animalCatSortTd"><span>Cat Sort</span></td>
                     </tr>
                 </table>
-                <!-- <div id="AnimalType">
-                    <span style="font-size: 20px; font-weight: lighter;">A</span>
-                </div>
-                <div id="AnimalAge">
-                </div>
-                <div id="AnimalGender">
-
-                </div>
-                <div id="DogSort">
-
-                </div>
-                <div id="CatSort">
-
-                </div> -->
             </div>
             <div id="chart">
-                
                 <canvas id="chartPicture"></canvas>
             </div>
         </div>

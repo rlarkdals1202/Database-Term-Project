@@ -69,3 +69,8 @@ td:hover
     background-color: black;
     color: white;
 }
+
+tr:hover
+{
+    box-shadow: 0 0 5px black;
+}
