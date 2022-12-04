@@ -88,6 +88,11 @@ td
     font-weight: lighter;
 }
 
+tr:hover:not(#informationRow)
+{
+    text-shadow: 0 0 5px greenyellow;
+}
+
 #writingButton
 {
     font-weight: lighter;

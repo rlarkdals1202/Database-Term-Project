@@ -10,7 +10,7 @@ const $boardUpdateButton = document.getElementById("boardUpdateButton");
 async function getBoard()
 {
     const boards = await axios.get("http://localhost:8080/improvement/information", {withCredentials: true});
-    const tableHeight = 20 + (boards.data.length * 20);
+    const tableHeight = 40 + (boards.data.length * 40);
     $improvementTable.style.height = `${tableHeight}px`
     const $documentFregment = document.createDocumentFragment();
     for(const board of boards.data)

@@ -108,7 +108,7 @@ td
 
 tr:hover:not(#informationRow)
 {
-    text-shadow: 0 0 5px #999999;
+    text-shadow: 0 0 5px orangered;
 }
 
 #boardDeleteButton, #boardUpdateButton

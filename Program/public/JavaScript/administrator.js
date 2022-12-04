@@ -7,7 +7,7 @@
     (2). 직원 정보 삭제하기
     (3). 직원 정보 갱신하기
     (4). 직원 정보 보기
-    (5). 협력하는 동물 병원 아이디 삽입하기
+    (5). 협력하는 동물 병원 아이디 추가하기
     (6). 협력하는 동물 병원 아이디 삭제하기
     (7). 보호소 건의사항 보기.
     (8). 프로그램 개선사항 보기.
@@ -53,7 +53,7 @@ async function signUp(connection, shelterId)
         try
         {
             const [result] = await connection.query(query);
-            if(result)
+            if(result.length !== 0)
             {
                 console.log("Completed.\n");
             }
@@ -79,7 +79,7 @@ async function deleteEmployeeInformation(connection)
     {
         const findQuery = `SELECT employee_id FROM employee`;
         const [findResults] = await connection.query(findQuery);
-        if(findResults)
+        if(findResults.length !== 0)
         {
             for(const employee of findResults)
             {
@@ -133,7 +133,7 @@ async function updateEmployeeInformaiton(connection, shelterId)
         let isEmployeeIdExist = false;
         const findQuery = `SELECT employee_id FROM employee`;
         const [findResults] = await connection.query(findQuery);
-        if(findResults)
+        if(findResults.length !== 0)
         {
             for(const employee of findResults)
             {
@@ -196,7 +196,7 @@ async function showEmployeeInformation(connection, shelterId)
     {
         const query = `SELECT employee_id, employee_gender, employee_birthday, employee_phone_number FROM employee WHERE shelter_id ="${shelterId}"`;
         const [result] = await connection.query(query);
-        if(result)
+        if(result.length !== 0)
         {
             console.log("\n=============<<<EMPLOYEE LIST>>>=============");
             for(const employee of result)
@@ -252,7 +252,7 @@ async function deleteAnimalHospital(connection, shelterId)
         const hospitalIdToDelete = scanf("%s");
         const getQuery = `SELECT animal_hospital_id FROM cooperation WHERE shelter_id = "${shelterId}"`;
         const [getResult] = await connection.query(getQuery);
-        if(getResult)
+        if(getResult.length !== 0)
         {
             for(const result of getResult)
             {
@@ -298,7 +298,7 @@ async function showShelterSuggestion(connection, shelterId)
     {
         const query = `SELECT board_content FROM employee NATURAL JOIN shelter NATURAL JOIN shelter_suggestions WHERE shelter_id = "${shelterId}"`;
         const [result] = await connection.query(query);
-        if(result)
+        if(result.length !== 0)
         {
             console.log("\n=============<<<SHELTER SUGGESTION LIST>>>=============");
             for(const boardContent of result)
@@ -320,7 +320,7 @@ async function showProgramImprovement(connection, shelterId)
     {
         const query = `SELECT board_content FROM employee NATURAL JOIN shelter NATURAL JOIN program_improvements WHERE shelter_id = "${shelterId}"`;
         const [result] = await connection.query(query);
-        if(result)
+        if(result.length !== 0)
         {
             console.log("\n=============<<<PROGRAM IMPROVEMENT LIST>>>=============");
             for(const boardContent of result)
@@ -343,7 +343,7 @@ async function administrate(connection, shelterId, shelterAddress)
     {
         const query = `SELECT shelter_name FROM shelter_address_book WHERE shelter_address = "${shelterAddress}"`;
         const [result] = await connection.query(query);
-        if(result)
+        if(result.length !== 0)
         {
             shelterName = result[0].shelter_name; 
         }
@@ -383,7 +383,7 @@ async function administrate(connection, shelterId, shelterAddress)
                 break;
 
             case 4:
-                await showEmployeeInformation(connection);
+                await showEmployeeInformation(connection, shelterId);
                 break;
 
             case 5:
@@ -426,7 +426,7 @@ async function main()
             shelterId = scanf("%s");
             const query = `SELECT shelter_id, shelter_address FROM shelter`;
             const [queryResult] = await connection.query(query);
-            if(queryResult)
+            if(queryResult.length !== 0)
             {
                 for(const shelter of queryResult)
                 {
