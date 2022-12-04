@@ -1,7 +1,7 @@
-#데이터베이스 변경
+# 데이터베이스 변경
 USE abandoned_animal_care;
 
-#보호소 테이블
+# 보호소 테이블
 CREATE TABLE shelter
 (
     shelter_id VARCHAR(500) NOT NULL PRIMARY KEY,
@@ -10,14 +10,14 @@ CREATE TABLE shelter
     UNIQUE(shelter_address)
 );
 
-#보호소 주소록 테이블
+# 보호소 주소록 테이블
 CREATE TABLE shelter_address_book
 (
     shelter_address VARCHAR(500) NOT NULL PRIMARY KEY,
     shelter_name VARCHAR(1000)
 );
 
-#동물 병원 테이블
+# 동물 병원 테이블
 CREATE TABLE animal_hospital
 (
     animal_hospital_id VARCHAR(500) NOT NULL PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE animal_hospital
     UNIQUE(animal_hospital_address)
 );
 
-#동물 병원 주소록 테이블
+# 동물 병원 주소록 테이블
 CREATE TABLE animal_hospital_address_book
 (
     animal_hospital_address VARCHAR(500) NOT NULL PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE animal_hospital_address_book
     animal_hospital_information TEXT
 );
 
-#협력 테이블
+# 협력 테이블
 CREATE TABLE cooperation
 (
     shelter_id VARCHAR(500),
@@ -44,11 +44,11 @@ CREATE TABLE cooperation
     FOREIGN KEY(animal_hospital_id) REFERENCES animal_hospital(animal_hospital_id)
 );
 
-#직원 테이블
+# 직원 테이블
 CREATE TABLE employee
 (
     employee_id VARCHAR(100) NOT NULL PRIMARY KEY,
-    employee_passowrd VARCHAR(100),
+    employee_password VARCHAR(100),
     employee_gender VARCHAR(10),
     employee_birthday DATE,
     employee_phone_number VARCHAR(50),
@@ -56,7 +56,7 @@ CREATE TABLE employee
     FOREIGN KEY(shelter_id) REFERENCES shelter(shelter_id)
 );
 
-#동물 테이블
+# 동물 테이블
 CREATE TABLE animal
 (
     animal_id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -68,14 +68,14 @@ CREATE TABLE animal
     FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
-#동물 품종 정보 테이블
+# 동물 품종 정보 테이블
 CREATE TABLE animal_sort_information
 (
     animal_sort VARCHAR(90),
-    animal_type VARCHAR(90)
+    animal_type VARCHAR(90) DEFAULT "동물"
 );
 
-#프로그램 개선사항 게시물 테이블
+# 프로그램 개선사항 게시물 테이블
 CREATE TABLE program_improvements
 (
     board_id INTEGER
@@ -88,7 +88,7 @@ CREATE TABLE program_improvements
     PRIMARY KEY(board_id, employee_id)
 );
 
-#보호소 건의사항 게시물 테이블
+# 보호소 건의사항 게시물 테이블
 CREATE TABLE shelter_suggestions
 (
     board_id INTEGER
