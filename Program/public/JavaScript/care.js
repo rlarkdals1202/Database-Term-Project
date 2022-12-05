@@ -12,7 +12,7 @@ const $animalInformationUpdateButton = document.getElementById("animalInformatio
 async function getAnimalList()
 {
     const animalList = await axios.get("http://localhost:8080/care/animalList", {withCredentials:true});
-    const tableHeight = 20 + (animalList.data.length * 20);
+    const tableHeight = 40 + (animalList.data.length * 40);
     $animalList.style.height = `${tableHeight}px`;
     const $documentFregment = document.createDocumentFragment();
     for(const animal of animalList.data)

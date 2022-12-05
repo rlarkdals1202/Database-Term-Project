@@ -1,3 +1,6 @@
+# 데이터베이스 생성
+CREATE DATABASE abandoned_animal_care;
+
 # 데이터베이스 변경
 USE abandoned_animal_care;
 
