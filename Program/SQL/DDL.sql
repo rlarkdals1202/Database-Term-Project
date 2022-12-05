@@ -68,6 +68,7 @@ CREATE TABLE animal
     animal_age INTEGER,
     employee_id VARCHAR(100),
     animal_memo TEXT,
+    animal_name VARCHAR (100),
     FOREIGN KEY(employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
